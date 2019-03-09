@@ -1,5 +1,5 @@
 
 
 from cpuinfo import get_cpu_info
-print(get_cpu_info())
-print('How many times should I see this?')
+get_cpu_info()
+print('This should only be printed once per test')
