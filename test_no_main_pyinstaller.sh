@@ -2,13 +2,14 @@
 set -e
 
 echo "Finding OS ..."
+homedir=~
 OS="unknown"
 PYINSTALLER="unknown"
 PYTHON2="unknown"
 PYTHON3="unknown"
 if [[ "$OSTYPE" == "linux"* ]]; then
 	OS="linux"
-	PYINSTALLER="~/.local/bin/pyinstaller"
+	PYINSTALLER="$homedir/.local/bin/pyinstaller"
 	PYTHON2="python2"
 	PYTHON3="python3"
 elif [ "$OSTYPE" == "msys" ] || [ "$OSTYPE" == "win32" ]; then
