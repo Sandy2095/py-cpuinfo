@@ -51,16 +51,24 @@ if [[ "$OS" != "windows" ]]; then
 	cd ..
 	rm -rf -f build
 	rm -rf -f dist
+	set +e
+	$PYTHON2 -m pip uninstall PyInstaller -y > /dev/null 2>&1
+	$PYTHON3 -m pip uninstall PyInstaller -y > /dev/null 2>&1
+	set -e
 fi
 
 echo "Running Python 2 PyInstaller main ..."
+$PYTHON2 -m pip install PyInstaller > /dev/null 2>&1
 $PYINSTALLER --onefile test_main.py > /dev/null 2>&1
 cd dist
 ./test_main
 cd ..
 rm -rf -f build
 rm -rf -f dist
+set +e
 $PYTHON2 -m pip uninstall PyInstaller -y > /dev/null 2>&1
+$PYTHON3 -m pip uninstall PyInstaller -y > /dev/null 2>&1
+set -e
 
 if [[ "$OS" != "windows" ]]; then
 	echo "Running Python 3 PyInstaller NO main ..."
@@ -71,16 +79,24 @@ if [[ "$OS" != "windows" ]]; then
 	cd ..
 	rm -rf -f build
 	rm -rf -f dist
+	set +e
+	$PYTHON2 -m pip uninstall PyInstaller -y > /dev/null 2>&1
+	$PYTHON3 -m pip uninstall PyInstaller -y > /dev/null 2>&1
+	set -e
 fi
 
 echo "Running Python 3 PyInstaller main ..."
+$PYTHON3 -m pip install PyInstaller > /dev/null 2>&1
 $PYINSTALLER --onefile test_main.py > /dev/null 2>&1
 cd dist
 ./test_main
 cd ..
 rm -rf -f build
 rm -rf -f dist
+set +e
+$PYTHON2 -m pip uninstall PyInstaller -y > /dev/null 2>&1
 $PYTHON3 -m pip uninstall PyInstaller -y > /dev/null 2>&1
+set -e
 
 echo "Cleanup ..."
 rm -rf -f build
