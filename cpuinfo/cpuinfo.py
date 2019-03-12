@@ -2219,14 +2219,6 @@ def get_cpu_info():
 	Returns the result in a dict
 	'''
 
-	import inspect
-	for frame in inspect.stack():
-		print('    ', frame)
-		info = inspect.getframeinfo(frame[0])
-		print(info)
-		for b in frame:
-			print('        ', b)
-
 	output = get_cpu_info_json()
 
 	# Convert JSON to Python with non unicode strings
