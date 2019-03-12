@@ -42,14 +42,16 @@ $PYTHON2 test_main.py
 echo "Running Python 2 NO main ..."
 $PYTHON2 test_no_main.py
 
-echo "Running Python 2 PyInstaller NO main ..."
-$PYTHON2 -m pip install PyInstaller > /dev/null 2>&1
-$PYINSTALLER --onefile test_no_main.py > /dev/null 2>&1
-cd dist
-./test_no_main
-cd ..
-rm -rf -f build
-rm -rf -f dist
+if [[ "$OS" != "windows" ]]; then
+	echo "Running Python 2 PyInstaller NO main ..."
+	$PYTHON2 -m pip install PyInstaller > /dev/null 2>&1
+	$PYINSTALLER --onefile test_no_main.py > /dev/null 2>&1
+	cd dist
+	./test_no_main
+	cd ..
+	rm -rf -f build
+	rm -rf -f dist
+fi
 
 echo "Running Python 2 PyInstaller main ..."
 $PYINSTALLER --onefile test_main.py > /dev/null 2>&1
@@ -60,14 +62,16 @@ rm -rf -f build
 rm -rf -f dist
 $PYTHON2 -m pip uninstall PyInstaller -y > /dev/null 2>&1
 
-echo "Running Python 3 PyInstaller NO main ..."
-$PYTHON3 -m pip install PyInstaller > /dev/null 2>&1
-$PYINSTALLER --onefile test_no_main.py > /dev/null 2>&1
-cd dist
-./test_no_main
-cd ..
-rm -rf -f build
-rm -rf -f dist
+if [[ "$OS" != "windows" ]]; then
+	echo "Running Python 3 PyInstaller NO main ..."
+	$PYTHON3 -m pip install PyInstaller > /dev/null 2>&1
+	$PYINSTALLER --onefile test_no_main.py > /dev/null 2>&1
+	cd dist
+	./test_no_main
+	cd ..
+	rm -rf -f build
+	rm -rf -f dist
+fi
 
 echo "Running Python 3 PyInstaller main ..."
 $PYINSTALLER --onefile test_main.py > /dev/null 2>&1
